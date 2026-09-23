@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "../(public)/globals.css";
 import AdminSidebar from "@/src/shared/_components/layout/admin-sidebar/AdminSidebar";
+import AdminHeader from "@/src/shared/_components/layout/admin-header/AdminHeader";
 
 const inter = Inter({
   variable: "--font-body",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html suppressHydrationWarning={true} className={`${inter.variable} ${playfairDisplay.variable}`}>
       <body>
+        <AdminHeader />
         <AdminSidebar />
         {children}
       </body>
