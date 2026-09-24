@@ -4,6 +4,8 @@
     justify-content: flex-start;
     align-items: flex-start;
 
+    position: fixed;
+
     height: 100vh;
     width: fit-content;
 
