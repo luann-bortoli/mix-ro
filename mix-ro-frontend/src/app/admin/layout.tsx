@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import "../(public)/globals.css";
+import { Inter, Lora } from "next/font/google";
+import "../(public)/globals.css"
 import AdminSidebar from "@/src/shared/_components/layout/admin-sidebar/AdminSidebar";
 import AdminHeader from "@/src/shared/_components/layout/admin-header/AdminHeader";
+
+import s from './layout.module.css'
 
 const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
 });
 
-const playfairDisplay = Playfair_Display({
+const lora = Lora({
   variable: "--font-display",
   subsets: ["latin"],
 });
@@ -25,11 +27,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html suppressHydrationWarning={true} className={`${inter.variable} ${playfairDisplay.variable}`}>
+    <html suppressHydrationWarning={true} className={`${inter.variable} ${lora.variable}`}>
       <body>
-        <AdminHeader />
+
         <AdminSidebar />
-        {children}
+
+        <AdminHeader />
+
+        <div className={s.content}>
+          {children}
+        </div>
+
       </body>
     </html>
   );

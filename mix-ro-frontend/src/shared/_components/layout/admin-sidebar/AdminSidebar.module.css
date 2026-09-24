@@ -4,9 +4,9 @@
     justify-content: flex-start;
     align-items: flex-start;
 
-    position: fixed;
-
+    position: absolute;
     height: 100vh;
+    z-index: 99;
     width: fit-content;
 
     background-color: var(--color-chocolate);

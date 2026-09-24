@@ -65,3 +65,20 @@ h2,
 h3 {
   font-family: var(--font-display);
 }
+
+.adminLayout {
+  display: flex;
+  min-height: 100vh;
+
+  .mainArea {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+
+    .content {
+      flex: 1;
+      padding: 32px;
+    }
+  }
+}

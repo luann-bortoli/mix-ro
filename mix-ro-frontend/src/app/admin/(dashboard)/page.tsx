@@ -6,11 +6,13 @@ import { SectionProps } from './data'
 export default function Dashboard() {
     return (
         <>
-            <AdminSectionTitle
-                path={SectionProps.path}
-                icon={SectionProps.icon}
-                title={SectionProps.title}
-                description={SectionProps.description} />
+            <div className={s.contentWrapper}>
+                <AdminSectionTitle
+                    path={SectionProps.path}
+                    icon={SectionProps.icon}
+                    title={SectionProps.title}
+                    description={SectionProps.description} />
+            </div>
         </>
     )
 }

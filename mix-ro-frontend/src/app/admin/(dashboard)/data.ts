@@ -4,5 +4,5 @@ export const SectionProps = {
     path: 'Dashboard',
     icon: LayoutGrid,
     title: 'Dashboard',
-    description: 'Esse é o dashboard top'
+    description: 'Aqui você gerencia todo o conteúdo da sua loja. Escolha um módulo no menu para começar.'
 }

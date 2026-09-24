@@ -6,13 +6,13 @@ export default function AdminSectionTitle({ path, icon: Icon, title, description
     return (
         <>
             <div className={s.mainWrapper}>
-                <div className={s.topText}>{path}</div>
+                <p className={s.pathLabel}>{path}</p>
 
                 <div className={s.rowWrapper}>
-                    <Icon />
+                    <Icon className={s.icon} />
 
                     <div className={s.textWrapper}>
-                        <p className={s.title}>{title}</p>
+                        <h3 className={s.title}>{title}</h3>
                         <p className={s.description}>{description}</p>
                     </div>
                 </div>
