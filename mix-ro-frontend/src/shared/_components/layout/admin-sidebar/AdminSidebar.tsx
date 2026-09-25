@@ -30,11 +30,8 @@ export default function AdminSidebar() {
                         return (
                             <Link key={item.href} className={s.itemLink} href={item.href}>
                                 <li className={isActive ? s.active : undefined}>
-
                                     <item.icon className={s.itemIcon} />
-
-                                    {item.label}
-
+                                    <span className={s.itemLabel}>{item.label}</span>
                                 </li>
                             </Link>
 

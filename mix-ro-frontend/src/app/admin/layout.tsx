@@ -37,7 +37,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className={s.content}>
           {children}
         </div>
-
       </body>
     </html>
   );

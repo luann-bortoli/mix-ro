@@ -11,7 +11,7 @@ export default function AdminHeader() {
     const [dropdown, setDropdown] = useState(false)
 
     return (
-        <>
+        <div className={s.contentContainer}>
             <header className={s.mainWrapper}>
 
                 <Link
@@ -51,6 +51,6 @@ export default function AdminHeader() {
                 </div>
 
             </header>
-        </>
+        </div>
     )
 }
