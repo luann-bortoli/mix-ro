@@ -5,6 +5,7 @@ import AdminSidebar from "@/src/shared/_components/layout/admin-sidebar/AdminSid
 import AdminHeader from "@/src/shared/_components/layout/admin-header/AdminHeader";
 
 import s from './layout.module.css'
+import AdminFooter from "@/src/shared/_components/layout/admin-footer/AdminFooter";
 
 const inter = Inter({
   variable: "--font-body",
@@ -37,6 +38,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className={s.content}>
           {children}
         </div>
+
+        <AdminFooter />
       </body>
     </html>
   );
