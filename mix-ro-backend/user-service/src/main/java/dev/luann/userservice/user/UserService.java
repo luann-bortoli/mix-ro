@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.function.Consumer;
 
 @RequiredArgsConstructor
 @Service
@@ -40,6 +41,16 @@ public class UserService
         }
     }
 
+    private void updateIfPresent(
+            String value,
+            Consumer<String> setter)
+    {
+        if (value != null && !value.isBlank())
+        {
+            setter.accept(value);
+        }
+    }
+
     public UserResponse findById(UUID id)
     {
         User user = findUserById(id);
@@ -60,10 +71,19 @@ public class UserService
 
         User newUser = new User();
 
-        newUser.setName(request.name());
+        newUser.setName(request.name()); 
         newUser.setEmail(request.email());
         newUser.setPassword(passwordEncoder.encode(request.password()));
         newUser.setRole(UserRole.ROLE_CUSTOMER);
+        newUser.setCpf(request.cpf());
+        newUser.setCep(request.cep());
+        newUser.setPhone(request.phone());
+        newUser.setState(request.state());
+        newUser.setCity(request.city());
+        newUser.setNeighborhood(request.neighborhood());
+        newUser.setStreet(request.street());
+        newUser.setNumber(request.number());
+        newUser.setComplement(request.complement());
 
         return mapper.toResponse(repository.save(newUser));
     }
@@ -75,24 +95,27 @@ public class UserService
 
         User current = findUserById(id);
 
-        if (request.name() != null
-                && !(request.name().isBlank()))
-        {
-            current.setName(request.name());
-        }
+        updateIfPresent(request.name(), current::setName);
+        updateIfPresent(request.email(), current::setEmail);
+        updateIfPresent(request.cpf(), current::setCpf);
+        updateIfPresent(request.cep(), current::setCep);
+        updateIfPresent(request.phone(), current::setPhone);
+        updateIfPresent(request.city(), current::setCity);
+        updateIfPresent(request.neighborhood(), current::setNeighborhood);
+        updateIfPresent(request.street(), current::setStreet);
+        updateIfPresent(request.number(), current::setNumber);
+        updateIfPresent(request.complement(), current::setComplement);
 
-        if (request.email() != null
-                &&!(request.email().isBlank()))
-        {
-            current.setEmail(request.email());
-        }
-
-        if (request.password() != null
-                && !(request.password().isBlank()))
+        if (request.password() != null && !request.password().isBlank())
         {
             current.setPassword(
                     passwordEncoder.encode(request.password())
             );
+        }
+
+        if (request.state() != null)
+        {
+            current.setState(request.state());
         }
 
         User saved = repository.save(current);

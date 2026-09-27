@@ -1,6 +1,7 @@
 package dev.luann.userservice.user;
 
 import dev.luann.userservice.user.enums.UserRole;
+import dev.luann.userservice.user.enums.UserState;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +38,34 @@ public class User
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @Column(nullable = false, unique = true, length = 11)
+    private String cpf;
+
+    @Column(nullable = false, length = 8)
+    private String cep;
+
+    @Column(nullable = false, unique = true, length = 11)
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 2)
+    private UserState state;
+
+    @Column(nullable = false, length = 64)
+    private String city;
+
+    @Column(nullable = false, length = 64)
+    private String neighborhood;
+
+    @Column(nullable = false, length = 64)
+    private String street;
+
+    @Column(nullable = false, length = 8)
+    private String number;
+
+    @Column(length = 64)
+    private String complement;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
