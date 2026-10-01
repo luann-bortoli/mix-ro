@@ -2,10 +2,11 @@ package dev.luann.userservice.user;
 
 import dev.luann.userservice.exception.EmailAlreadyExists;
 import dev.luann.userservice.exception.ResourceNotFound;
+import dev.luann.userservice.messaging.kafka.UserEventProducer;
 import dev.luann.userservice.user.dto.UserPatchRequest;
 import dev.luann.userservice.user.dto.UserRequest;
 import dev.luann.userservice.user.dto.UserResponse;
-import dev.luann.userservice.user.enums.UserRole;
+import dev.luann.userservice.user.event.UserCreatedEvent;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,7 @@ public class UserService
     private final UserRepository repository;
     private final UserMapper mapper;
     private final PasswordEncoder passwordEncoder;
+    private final UserEventProducer eventProducer;
 
     private User findUserById(UUID id)
     {
@@ -69,23 +71,21 @@ public class UserService
     {
         verifyEmailExistence(request.email());
 
-        User newUser = new User();
+        String encodedPassword = passwordEncoder.encode(request.password());
 
-        newUser.setName(request.name()); 
-        newUser.setEmail(request.email());
-        newUser.setPassword(passwordEncoder.encode(request.password()));
-        newUser.setRole(UserRole.ROLE_CUSTOMER);
-        newUser.setCpf(request.cpf());
-        newUser.setCep(request.cep());
-        newUser.setPhone(request.phone());
-        newUser.setState(request.state());
-        newUser.setCity(request.city());
-        newUser.setNeighborhood(request.neighborhood());
-        newUser.setStreet(request.street());
-        newUser.setNumber(request.number());
-        newUser.setComplement(request.complement());
+        User newUser = mapper.toEntity(request, encodedPassword);
 
-        return mapper.toResponse(repository.save(newUser));
+        User saved = repository.save(newUser);
+
+        eventProducer.sendUserCreated(
+                new UserCreatedEvent(
+                        saved.getId(),
+                        saved.getName(),
+                        saved.getEmail()
+                )
+        );
+
+        return mapper.toResponse(saved);
     }
 
     @Transactional
