@@ -7,7 +7,6 @@
     .modulesWrapper {
         display: flex;
         flex-direction: column;
-        margin: 64px 0 0 0;
 
         .modulesTitle {
             font-size: 32px;
