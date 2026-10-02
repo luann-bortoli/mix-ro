@@ -26,7 +26,7 @@ export default function AdminHeader() {
                     onMouseLeave={() => setDropdown(false)}
                 >
 
-                    <img src="images\_shared\default-profile-pic.jpg" alt="" className={s.accountPic} />
+                    <img src="\images\shared\default-profile-pic.jpg" alt="" className={s.accountPic} />
 
                     <div className={s.infoWrapper}>
                         <div className={s.accountName}>Administrador</div>

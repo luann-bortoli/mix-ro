@@ -41,21 +41,21 @@ export default function AdminFooter() {
                     <div className={s.socialContainer}>
                         <img
                             className={s.socialIcon}
-                            src="images/icons/social/instagram-chocolate.svg" alt=""
+                            src="/images/icons/social/instagram-chocolate.svg" alt=""
                         />
                     </div>
 
                     <div className={s.socialContainer}>
                         <img
                             className={s.socialIcon}
-                            src="images/icons/social/whatsapp-chocolate.svg" alt=""
+                            src="/images/icons/social/whatsapp-chocolate.svg" alt=""
                         />
                     </div>
 
                     <div className={s.socialContainer}>
                         <img
                             className={s.socialIcon}
-                            src="images/icons/social/facebook-chocolate.svg" alt=""
+                            src="/images/icons/social/facebook-chocolate.svg" alt=""
                         />
                     </div>
 
