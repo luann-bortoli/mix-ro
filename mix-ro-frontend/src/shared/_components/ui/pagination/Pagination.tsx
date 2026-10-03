@@ -22,13 +22,12 @@ export default function Pagination({
     )
 
     return (
-        <nav className={s.pagination} aria-label="Paginação">
+        <nav className={s.pagination}>
             <button
                 type="button"
                 className={s.actionButton}
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 0}
-                aria-label="Página anterior"
             >
                 <ChevronLeft size={16} />
             </button>
@@ -40,7 +39,6 @@ export default function Pagination({
                     className={`${s.pageButton} ${page === currentPage ? s.active : ''
                         }`}
                     onClick={() => onPageChange(page)}
-                    aria-current={page === currentPage ? 'page' : undefined}
                 >
                     {page + 1}
                 </button>
@@ -51,7 +49,6 @@ export default function Pagination({
                 className={s.actionButton}
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages - 1}
-                aria-label="Próxima página"
             >
                 <ChevronRight size={16} />
             </button>
