@@ -26,11 +26,7 @@ export default function AdminFooter() {
                     <ul>
                         {FooterModuleData.map((module) => {
                             return (
-                                <>
-
-                                    <li><Link href={module.href}>{module.label}</Link></li>
-
-                                </>
+                                <li key={module.href}><Link href={module.href}>{module.label}</Link></li>
                             )
                         })}
                     </ul>
