@@ -1,0 +1,43 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    .pageButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 28px;
+        aspect-ratio: 1/1;
+        border-radius: 6px;
+        font-size: 11px;
+        background-color: var(--color-background-secondary);
+        color: var(--color-primary);
+        cursor: pointer;
+    }
+
+    .actionButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 28px;
+        aspect-ratio: 1/1;
+        border-radius: 6px;
+        font-size: 11px;
+        border: solid 1px var(--color-border);
+        color: var(--color-primary);
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        &.active {
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+    }
+}
