@@ -3,18 +3,13 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import s from './Pagination.module.css'
 
-interface PaginationProps {
+type PaginationProps = {
     currentPage: number
     totalPages: number
     onPageChange: (page: number) => void
 }
 
-export default function Pagination({
-    currentPage,
-    totalPages,
-    onPageChange
-}: PaginationProps) {
-    if (totalPages <= 1) return null
+export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
 
     const pages = Array.from(
         { length: totalPages },
@@ -36,8 +31,7 @@ export default function Pagination({
                 <button
                     key={page}
                     type="button"
-                    className={`${s.pageButton} ${page === currentPage ? s.active : ''
-                        }`}
+                    className={`${s.pageButton} ${page === currentPage ? s.active : ''}`}
                     onClick={() => onPageChange(page)}
                 >
                     {page + 1}
