@@ -42,7 +42,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }: Pa
                 type="button"
                 className={s.actionButton}
                 onClick={() => onPageChange(currentPage + 1)}
-                disabled={currentPage === totalPages - 1}
+                disabled={currentPage === totalPages}
             >
                 <ChevronRight size={16} />
             </button>
