@@ -154,6 +154,11 @@
                         justify-content: flex-end;
                     }
 
+                    &:first-child {
+                        font-weight: 500;
+                        color: var(--color-text);
+                    }
+
                     .expandButton {
                         display: flex;
                         justify-content: center;

@@ -5,10 +5,66 @@ import s from './Costumers.module.css'
 import { SectionProps } from './_module/data'
 import { ChevronDown, Eye, Funnel, Search } from 'lucide-react'
 import Pagination from '@/src/shared/_components/ui/pagination/Pagination'
+import customerService from './_module/_services/customerService'
+import { useEffect, useState } from 'react'
+import { Customer } from './_module/types'
+import { PageData } from '@/src/shared/types'
+import { format } from '@/src/shared/utils/text'
+import CustomerDetailsModal from './_module/_components/customer-details-modal/CustomerDetailsModal'
 
 export default function Costumers() {
+
+    const [customerData, setCustomerData] = useState<Customer[]>([])
+    const [pageData, setPageData] = useState<PageData>({
+        page: 0,
+        size: 10,
+        totalElement: 0,
+        totalPages: 0,
+        first: false,
+        last: false
+    })
+
+    const [detailsContent, setDetaillContent] = useState<Customer>()
+
+    useEffect(() => {
+        const fetchCustomers = async () => {
+            try
+            {
+                const data = await customerService.findAll({
+                    page: pageData.page,
+                    size: pageData.size
+                })
+
+                setCustomerData(data.content)
+
+                setPageData(prev => ({
+                    ...prev,
+                    page: data.page,
+                    size: data.size,
+                    totalElement: data.totalElements,
+                    totalPages: data.totalPages,
+                    first: data.first,
+                    last: data.last
+                }))
+            } catch (error)
+            {
+                console.error('Erro ao buscar clientes:', error)
+            }
+        }
+
+        fetchCustomers()
+    }, [pageData.page, pageData.size])
+
     return (
         <>
+            {
+                detailsContent
+                && <CustomerDetailsModal
+                    onClose={() => setDetaillContent(undefined)}
+                    content={detailsContent}
+                />
+            }
+
             <div className={s.contentWrapper}>
                 <AdminSectionHeader
                     path={SectionProps.path}
@@ -60,23 +116,37 @@ export default function Costumers() {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>João Silva</td>
-                                <td>joao@email.com</td>
-                                <td>(54) 99999-9999</td>
-                                <td>13/09/2025</td>
-                                <td>
-                                    <button className={s.expandButton}><Eye className={s.expandIcon} /></button>
-                                </td>
-                            </tr>
+                            {customerData.map((customer) => {
+                                return (
+                                    <tr key={customer.cpf}>
+                                        <td>{customer.name}</td>
+                                        <td>{customer.email}</td>
+                                        <td>{format.phone(customer.phone)}</td>
+                                        <td>{format.date(customer.createdAt)}</td>
+                                        <td>
+                                            <button
+                                                onClick={() => setDetaillContent(customer)}
+                                                className={s.expandButton}
+                                            >
+                                                <Eye className={s.expandIcon} />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
 
                     <div className={s.paginationWrapper}>
                         <Pagination
-                            currentPage={5}
-                            totalPages={7}
-                            onPageChange={() => 1}
+                            currentPage={pageData.page}
+                            totalPages={pageData.totalPages}
+                            onPageChange={(page) => {
+                                setPageData(prev => ({
+                                    ...prev,
+                                    page
+                                }))
+                            }}
                         />
                     </div>
                 </div>
