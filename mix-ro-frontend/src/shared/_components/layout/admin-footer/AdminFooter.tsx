@@ -12,7 +12,7 @@ export default function AdminFooter() {
                 <div className={s.brandWrapper}>
                     <img
                         className={s.brandLogo}
-                        src="images/logo/full-logo-chocolate.svg" alt="" />
+                        src="/images/logo/full-logo-chocolate.svg" alt="" />
 
                     <hr />
 
