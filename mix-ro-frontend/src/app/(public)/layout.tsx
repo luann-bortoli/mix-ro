@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import CustomerHeader from "@/src/shared/_components/layout/customer-header/CustomerHeader";
 
 const inter = Inter({
   variable: "--font-body",
@@ -24,7 +25,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html suppressHydrationWarning={true} className={`${inter.variable} ${playfairDisplay.variable}`}>
-      <body>{children}</body>
+      <body>
+        <CustomerHeader />
+        {children}
+        </body>
     </html>
   );
 }
