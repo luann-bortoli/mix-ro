@@ -1,0 +1,104 @@
+.contentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 60px;
+
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+
+    position: relative;
+    z-index: 100;
+
+    .contentWrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 1200px;
+        height: 100%;
+
+        padding: 0 16px;
+
+        .logo {
+            width: 74px;
+            height: auto;
+            display: block;
+        }
+
+        .navWrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+
+            .navList {
+                display: flex;
+                align-items: center;
+
+                height: 35px;
+                gap: 36px;
+
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                .navItem {
+                    height: 100%;
+
+                    display: flex;
+                    align-items: center;
+
+                    position: relative;
+
+                    a {
+                        height: 100%;
+
+                        display: flex;
+                        align-items: center;
+
+                        color: var(--color-text);
+                        font-size: 12px;
+                        font-weight: 600;
+                        text-decoration: none;
+
+                        transition: color 0.2s ease;
+
+                        &:hover {
+                            color: var(--color-primary);
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            color: var(--color-primary);
+                        }
+
+                        &::after {
+                            content: '';
+
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+
+                            height: 2px;
+
+                            background-color: var(--color-primary);
+                            border-radius: 2px 2px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .actionWrapper {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+
+        }
+    }
+}

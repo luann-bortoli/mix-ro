@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Instrument_Sans, Spectral } from "next/font/google";
 import "./globals.css";
 import CustomerHeader from "@/src/shared/_components/layout/customer-header/CustomerHeader";
 
-const inter = Inter({
+const fontBody = Instrument_Sans({
   variable: "--font-body",
   subsets: ["latin"],
 });
 
-const playfairDisplay = Playfair_Display({
+const fontDisplay = Spectral({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"]
 });
 
 export const metadata: Metadata = {
@@ -24,11 +25,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html suppressHydrationWarning={true} className={`${inter.variable} ${playfairDisplay.variable}`}>
+    <html suppressHydrationWarning={true} className={`${fontBody.variable} ${fontDisplay.variable}`}>
       <body>
         <CustomerHeader />
         {children}
-        </body>
+      </body>
     </html>
   );
 }

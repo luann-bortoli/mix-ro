@@ -9,7 +9,7 @@ import customerService from './_module/_services/customerService'
 import { useEffect, useState } from 'react'
 import { Customer } from './_module/types'
 import { PageData } from '@/src/shared/types'
-import { format } from '@/src/shared/utils/text'
+import { interfaceFormat } from '@/src/shared/utils/text'
 import CustomerDetailsModal from './_module/_components/customer-details-modal/CustomerDetailsModal'
 
 export default function Costumers() {
@@ -121,8 +121,8 @@ export default function Costumers() {
                                     <tr key={customer.cpf}>
                                         <td>{customer.name}</td>
                                         <td>{customer.email}</td>
-                                        <td>{format.phone(customer.phone)}</td>
-                                        <td>{format.date(customer.createdAt)}</td>
+                                        <td>{interfaceFormat.phone(customer.phone)}</td>
+                                        <td>{interfaceFormat.date(customer.createdAt)}</td>
                                         <td>
                                             <button
                                                 onClick={() => setDetaillContent(customer)}

@@ -1,4 +1,4 @@
-import api from "@/src/lib/axios/api"
+import api from "@/src/shared/lib/api"
 import { PageResponse } from "@/src/shared/types"
 import { Customer } from "../types"
 

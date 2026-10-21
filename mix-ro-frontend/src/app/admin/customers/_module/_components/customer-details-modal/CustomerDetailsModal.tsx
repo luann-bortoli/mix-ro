@@ -1,7 +1,7 @@
 import { Calendar, LocationEditIcon, Mail, MapPin, Phone, User, X } from 'lucide-react'
 import s from './CustomerDetailsModal.module.css'
 import { Customer } from '../../types'
-import { format } from '@/src/shared/utils/text'
+import { interfaceFormat } from '@/src/shared/utils/text'
 
 type Props = {
     onClose: () => void
@@ -48,7 +48,7 @@ export default function CustomerDetailsModal({ onClose, content }: Props) {
                                 </div>
                                 <div className={s.infoItem}>
                                     <Calendar className={s.icon} />
-                                    <p className={s.value}>{format.date(content.createdAt)}</p>
+                                    <p className={s.value}>{interfaceFormat.date(content.createdAt)}</p>
                                 </div>
                             </div>
                         </div>
@@ -74,11 +74,11 @@ export default function CustomerDetailsModal({ onClose, content }: Props) {
                                         </tr>
                                         <tr>
                                             <th scope="row">Telefone</th>
-                                            <td>{format.phone(content.phone)}</td>
+                                            <td>{interfaceFormat.phone(content.phone)}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">CPF</th>
-                                            <td>{format.cpf(content.cpf)}</td>
+                                            <td>{interfaceFormat.cpf(content.cpf)}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -93,7 +93,7 @@ export default function CustomerDetailsModal({ onClose, content }: Props) {
                                     <tbody>
                                         <tr>
                                             <th scope="row">CEP</th>
-                                            <td>{format.cep(content.cep)}</td>
+                                            <td>{interfaceFormat.cep(content.cep)}</td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Estado</th>
@@ -136,11 +136,11 @@ export default function CustomerDetailsModal({ onClose, content }: Props) {
                                 </tr>
                                 <tr>
                                     <th scope="row">Criado em</th>
-                                    <td>{format.date(content.createdAt)}</td>
+                                    <td>{interfaceFormat.date(content.createdAt)}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Última atualização</th>
-                                    <td>{format.date(content.updatedAt)}</td>
+                                    <td>{interfaceFormat.date(content.updatedAt)}</td>
                                 </tr>
                             </table>
                         </div>

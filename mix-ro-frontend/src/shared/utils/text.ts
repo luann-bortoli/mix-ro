@@ -1,4 +1,4 @@
-export const format = {
+export const interfaceFormat = {
 
     date: (date: string) => {
         if (!date) return
@@ -42,5 +42,29 @@ export const format = {
         const lastPart = phone.substring(7, 11)
 
         return (`(${areaCode}) ${firstPart}-${lastPart}`)
+    }
+}
+
+export const databaseFormat = {
+
+    cpf: (cpf: string) => {
+        if (!cpf) return
+        if (cpf.length < 11) return "?"
+
+        return cpf.replace(/\D/g, '')
+    },
+
+    cep: (cep: string) => {
+        if (!cep) return
+        if (cep.length < 8) return "?"
+
+        return cep.replace(/\D/g, '')
+    },
+
+    phone: (phone: string) => {
+        if (!phone) return
+        if (phone.length < 10) return "?"
+
+        return phone.replace(/\D/g, '')
     }
 }

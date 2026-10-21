@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
+import { Instrument_Sans, Spectral } from "next/font/google";
 import "../(public)/globals.css"
 import AdminSidebar from "@/src/shared/_components/layout/admin-sidebar/AdminSidebar";
 import AdminHeader from "@/src/shared/_components/layout/admin-header/AdminHeader";
@@ -7,14 +7,15 @@ import AdminHeader from "@/src/shared/_components/layout/admin-header/AdminHeade
 import s from './layout.module.css'
 import AdminFooter from "@/src/shared/_components/layout/admin-footer/AdminFooter";
 
-const inter = Inter({
+const fontBody = Instrument_Sans({
   variable: "--font-body",
   subsets: ["latin"],
 });
 
-const lora = Lora({
+const displayFont = Spectral({
   variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"]
 });
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html suppressHydrationWarning={true} className={`${inter.variable} ${lora.variable}`}>
+    <html suppressHydrationWarning={true} className={`${fontBody.variable} ${displayFont.variable}`}>
       <body>
 
         <AdminSidebar />
