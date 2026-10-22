@@ -4,12 +4,12 @@ import { UserMenuItem } from "./types"
 export const GuestUserMenuData: UserMenuItem[] = [
     {
         label: 'Entrar',
-        href: '/login',
+        href: '/auth/login',
         icon: LogIn,
     },
     {
         label: 'Criar conta',
-        href: '/register',
+        href: '/auth/register',
         icon: UserPlus,
     },
 ]
