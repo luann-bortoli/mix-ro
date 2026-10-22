@@ -30,8 +30,7 @@ export default function Login() {
 
         try
         {
-            console.log(data)
-            api.post("/auth/login", data)
+            await api.post("/auth/login", data)
 
             toast.success("Logado com sucesso")
             router.push("/")

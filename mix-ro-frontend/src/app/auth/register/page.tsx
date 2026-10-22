@@ -9,8 +9,11 @@ import FormSelect from '@/src/shared/_components/ui/form-select/FormSelect'
 import { brazilianStates, ProblemDetail } from '@/src/shared/types'
 import api from '@/src/shared/lib/api'
 import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
 export default function Register() {
+
+    const router = useRouter()
 
     const {
         register,
@@ -43,17 +46,16 @@ export default function Register() {
     const onSubmit = async (data: RegisterSchema) => {
         try
         {
-            console.log(data)
-
             await api.post("/auth/register", data)
             toast.success("Usuário cadastrado")
+            router.push("/auth/login")
 
         }
         catch (error)
         {
             const problem = error as ProblemDetail
 
-            toast.error(problem.detail)
+            toast.error(problem.detail ?? "Erro inesperado")
         }
     }
 

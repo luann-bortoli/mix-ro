@@ -11,13 +11,17 @@ import {
     CustomerUserMenuData,
     UserMenuFooterData,
 } from './data'
-import { session } from '@/src/shared/services/session'
+import { useCurrent } from '@/src/shared/hooks/useCurrent'
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 export default function UserMenu() {
+
+    const router = useRouter()
+
     const [isOpen, setIsOpen] = useState(false)
 
-    // Estado demonstrativo: substituir pela autenticação real.
-    const isLoggedIn = true
+    const { user, name, isAuthenticated: isLoggedIn, isLoading, logout } = useCurrent()
 
     function closeMenu() {
         setIsOpen(false)
@@ -53,8 +57,8 @@ export default function UserMenu() {
                                 </span>
 
                                 <span className={s.userIdentity}>
-                                    <strong>Luana Bortoli</strong>
-                                    <span>luana@email.com</span>
+                                    <strong>{name}</strong>
+                                    <span>{user?.email}</span>
                                 </span>
 
                                 <ChevronRight className={s.accountArrow} />
@@ -100,8 +104,10 @@ export default function UserMenu() {
                             <button
                                 type="button"
                                 className={s.logoutButton}
-                                onClick={() => {
-                                    session.logout()
+                                onClick={async () => {
+                                    await logout()
+                                    closeMenu()
+                                    router.replace('/')
                                 }}
                             >
                                 <LogOut />

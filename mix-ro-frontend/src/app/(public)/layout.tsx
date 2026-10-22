@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Instrument_Sans, Spectral } from "next/font/google";
 import "./globals.css";
 import CustomerHeader from "@/src/shared/_components/layout/customer-header/CustomerHeader";
+import { CurrentUserProvider } from "@/src/shared/providers/currentUserContext";
 
 const fontBody = Instrument_Sans({
   variable: "--font-body",
@@ -27,8 +28,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html suppressHydrationWarning={true} className={`${fontBody.variable} ${fontDisplay.variable}`}>
       <body>
-        <CustomerHeader />
-        {children}
+        <CurrentUserProvider>
+          <CustomerHeader />
+          {children}
+        </CurrentUserProvider>
       </body>
     </html>
   );
