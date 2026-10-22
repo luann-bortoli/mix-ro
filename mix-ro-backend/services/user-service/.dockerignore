@@ -1,0 +1,8 @@
+target
+.idea
+.mvn
+.git
+.env
+*.iml
+HELP.md
+Dockerfile
