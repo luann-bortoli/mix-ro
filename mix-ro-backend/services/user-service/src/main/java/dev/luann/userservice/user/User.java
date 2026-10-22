@@ -19,7 +19,21 @@ import java.util.UUID;
 @NoArgsConstructor
 
 @Entity
-@Table(name = "users")
+@Table(
+        name = "users",
+        indexes = {
+                @Index(
+                        name = "idx_users_email",
+                        columnList = "email",
+                        unique = true
+                ),
+                @Index(
+                        name = "idx_users_cpf",
+                        columnList = "cpf",
+                        unique = true
+                )
+        }
+)
 public class User
 {
     @Id
